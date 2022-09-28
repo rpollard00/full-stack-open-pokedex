@@ -12,7 +12,7 @@ env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 jobs:
-  simple_deployment_pipeline:
+  pre_deploy_tests:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -29,6 +29,10 @@ jobs:
         run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v4
+  deployment:
+    needs: pre_deploy_tests
+    if: ${{ github.event_name == 'push' }}
+    steps:
         with:
           build: npm run build
           start: npm run start-prod
