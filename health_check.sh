@@ -1,5 +1,13 @@
 #!/bin/bash
 
-echo "HELLO TO YOU"
+RESULT=$(curl localhost:5000/health)
 
-exit 0
+echo "RESULT: $RESULT"
+
+if [[ $RESULT == *"ok"* ]]; then
+  echo "Health Check Passed"
+  exit 0
+fi
+
+echo "Health Check Failed"
+exit 1
