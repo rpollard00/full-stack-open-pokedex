@@ -29,15 +29,15 @@ jobs:
         run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
+          start: npm run start-prod
+          wait-on: http://localhost:5000
   deployment_job:
     runs-on: ubuntu-20.04
     needs: pre_deploy_tests
     if: ${{ github.event_name == 'push' }}
     steps:
-        with:
-          build: npm run build
-          start: npm run start-prod
-          wait-on: http://localhost:5000
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
