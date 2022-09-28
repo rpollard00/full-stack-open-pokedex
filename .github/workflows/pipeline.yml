@@ -30,6 +30,7 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v4
   deployment_job:
+    runs-on: ubuntu-20.04
     needs: pre_deploy_tests
     if: ${{ github.event_name == 'push' }}
     steps:
