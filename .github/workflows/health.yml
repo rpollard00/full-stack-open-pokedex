@@ -1,9 +1,8 @@
 name: Periodic health check of pokedex app
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '30 17 * * *'
+    - cron: '15 18 * * *'
 
 jobs:
   health_check:
