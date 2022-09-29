@@ -52,8 +52,8 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         if: failure()
         with:
-          severity: info
-          details: Build succeeded
+          severity: error
+          details: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   bump_version:
     if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
