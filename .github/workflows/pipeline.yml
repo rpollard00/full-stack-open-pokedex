@@ -34,9 +34,9 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
   deployment_job:
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-20.04
     needs: pre_deploy_tests
-    if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
