@@ -12,7 +12,7 @@ env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 jobs:
-  simple_deployment_pipeline:
+  pre_deploy_tests:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -33,6 +33,11 @@ jobs:
           build: npm run build
           start: npm run start-prod
           wait-on: http://localhost:5000
+  deployment_job:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-20.04
+    needs: pre_deploy_tests
+    steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
