@@ -34,7 +34,6 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
   deployment_job:
-    runs-on: ubuntu-20.04
     needs: pre_deploy_tests
     if: ${{ github.event_name == 'push' }}
     steps:
