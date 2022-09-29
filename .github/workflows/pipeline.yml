@@ -3,7 +3,7 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - master
+      - '**'
   pull_request:
     branches: [master]
     types: [opened, synchronize]
@@ -33,3 +33,10 @@ jobs:
           build: npm run build
           start: npm run start-prod
           wait-on: http://localhost:5000
+  deployment_job:
+    needs: pre_deploy_tests
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
