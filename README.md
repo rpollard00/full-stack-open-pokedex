@@ -1,4 +1,4 @@
-The other exercises were completed in [bloglist]<https://github.com/rpollard00/bloglist>
+The other exercises were completed in [bloglist](https://github.com/rpollard00/bloglist)
 
 # Full Stack open CI/CD
 
