@@ -1,16 +1,16 @@
-name: Periodic health check of pokedex app
+# name: Periodic health check of pokedex app
 
-on:
-  schedule:
-    - cron: '15 18 * * *'
+# on:
+#   schedule:
+#     - cron: '15 18 * * *'
 
-jobs:
-  health_check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check the pokedex URL
-        uses: jtalk/url-health-check-action@v2
-        with:
-          url: https://dawn-frost-4596.fly.dev/
-          max-attempts: 3
-          retry-delay: '5s'
+# jobs:
+#   health_check:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check the pokedex URL
+#         uses: jtalk/url-health-check-action@v2
+#         with:
+#           url: https://dawn-frost-4596.fly.dev/
+#           max-attempts: 3
+#           retry-delay: '5s'
